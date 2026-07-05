@@ -123,3 +123,17 @@ const inputs: Payload[] = [
     { id: 2, content: "validate blockchain structure", stage: "start" },
     { id: 3, content: "finalize execution flow", stage: "start" }
 ];
+
+// Run execution cycles
+for (const input of inputs) {
+    const result = kernel.execute(input);
+
+    console.log(
+        `Payload ${result.payload.id} => ` +
+        (result.approved ? "ACCEPTED" : "REJECTED")
+    );
+}
+
+// Output ledger state
+console.log("\n--- LEDGER STATE ---");
+console.log(ledger.readChain());
